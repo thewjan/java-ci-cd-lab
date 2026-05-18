@@ -1,29 +1,26 @@
-name: Java CIq pipeline
+name: Java CI pipeline
 
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Checkout Repository
       uses: actions/checkout@v4
 
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-          java-version: '17'
-          distribution: 'temurin
+        java-version: '17'
+        distribution: 'temurin'
 
-    - name: compile
-      run: javac main.java
+    - name: Compile
+      run: javac Main.java
 
     - name: Run Java Program
-      run: java main
-     
+      run: java Main
