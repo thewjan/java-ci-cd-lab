@@ -2,13 +2,19 @@ name: "Java Build Action"
 
 description: "compile and run Java program"
 
+inputs:
+  file-name:
+    description: "Java file name"
+    required: true
+
 runs:
   using: "composite"
 
   steps:
     - name: Compile Java
-      run: javac Main.java
+      run: javac ${{ inputs.file-name }}
       shell: bash
 
     - name: Run Java Program
-      run: java Main
+      run: java ${{ inputs.file-name }}
+      shell: bash
