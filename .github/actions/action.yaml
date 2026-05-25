@@ -1,20 +1,20 @@
-name: "Java Build Action"
+name: "Build Status Action"
 
-description: "compile and run Java program"
+description: "Returns build result"
 
-inputs:
-  file-name:
-    description: "Java file name"
-    required: true
+outputs:
+  result:
+    description: "Build result"
+    
 
 runs:
   using: "composite"
 
   steps:
-    - name: Compile Java
-      run: javac ${{ inputs.file-name }}
-      shell: bash
+    - name: Set Output
+      id: custom-action
+      uses:./.github/actions/java-build
 
-    - name: Run Java Program
-      run: java ${{ inputs.file-name }}
-      shell: bash
+
+    - name: Print Output
+      run: echo "${{ steps.custom-action.outputs.result }}"
